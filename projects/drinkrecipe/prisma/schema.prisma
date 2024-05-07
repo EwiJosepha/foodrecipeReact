@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id       Int         @default(autoincrement()) @id
+  email    String      @unique
+  firstname String
+  lastname  String
+  phoneNumber Int
+  password    String?
+  role        Boolean  @default(true)
+  categories Categorie[]
+  drinks    Drinks[]
+  glasses   Glasses[]
+  ingredients Ingredients[]
+}
+
+
+model Glasses {
+  id            Int      @default(autoincrement()) @id
+  name          String
+  type          String
+  createdBy     Users?   @relation(fields: [createdById], references: [id])
+  createdById   Int? @unique
+  drinks        Drinks[]
+}
+
+model Categorie {
+  id            Int      @default(autoincrement()) @id
+  name          String
+  description   String
+  createdBy     Users?   @relation(fields: [createdById], references: [id])
+  createdById   Int ?
+  drinks        Drinks[]
+}
+
+model Drinks {
+  id            Int      @default(autoincrement()) @id
+  name          String
+  description   String
+  imageUrl      String
+  recipe        String
+  ingredients    Ingredients @relation(fields: [ingredientsId], references: [id])
+ ingredientsId   Int
+  categorie     Categorie @relation(fields: [categorieId], references: [id])
+  categorieId   Int
+  glass         Glasses  @relation(fields: [glassId], references: [id])
+  glassId       Int
+  createdBy     Users   @relation(fields: [createdById], references: [id])
+  createdById   Int
+  isAlcoholic   Boolean?
+}
+
+model Ingredients {
+    id            Int      @default(autoincrement()) @id
+  name          String
+  description   String
+  createdBy     Users?   @relation(fields: [createdById], references: [id])
+  createdById   Int ?
+  drinks        Drinks[]
+}
+
