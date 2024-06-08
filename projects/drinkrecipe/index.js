@@ -2,7 +2,8 @@ const express = require("express")
 // const  PORT = require("./src/secret")
 const cors = require('cors');
 const rootrouter = require("./src/routers")
-const PORT = require("./src/secret")
+const config = require("./src/secret")
+const PORT = config.PORT
 const app = express()
 app.use(express.json());
 //auth routes

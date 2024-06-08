@@ -31,7 +31,7 @@ async function categories(req, res) {
     }
 
     if (createCategory) {
-      return res.status(201).json({ message: "created category successfully" });
+      return res.status(201).json({ message: "created category successfully", data });
     }
   } catch (err) {
     console.log("err", err);
