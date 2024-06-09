@@ -13,39 +13,6 @@ async function getAGlass(req, res) {
     token: INTERGRATION_SECRET,
     useCdn: true,
   }) 
-
-//   try {
-//     const { name, type } = req.body
-//     const notionglass = await client.pages.create({
-//       parent: { database_id: DB_SECRET },
-//       properties: {
-//         Name: {
-//           title: [
-//             {
-//               text: {
-//                 content: name
-//               }
-//             }
-//           ]
-//         },
-
-//         "type": {
-//           rich_text: [
-//             {
-//               text: {
-//                 content: type
-//               }
-//             }
-//           ]
-//         }
-//       }
-//     })
-// console.log(notionglass)
-// console.log("sucess");;
-//   } catch (error) {
-// console.log(error);
-//   }
-
   // try {
   //   console.log(req);
   //   const { name, type } = req.body
