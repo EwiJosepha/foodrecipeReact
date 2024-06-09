@@ -39,12 +39,11 @@ async function drinks(req, res) {
     }
 
     if (res.status === 500) {
-      res.send("server error")
+      res.send("server  error sorry an error occured")
     }
-    console.log("drinks", createDrinks);
 
   } catch (error) {
-    console.log(error);
+    return [];
   }
 }
 
